@@ -1,4 +1,4 @@
-# swiftness v0.1
+# Swiftness v0.1
 
 ![swiftness](https://media.giphy.com/media/3o7WIB0KBZfmGpVV6w/giphy.gif)
 
