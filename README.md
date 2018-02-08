@@ -1,6 +1,6 @@
 # Swiftness v0.1
 
-![swiftness](https://media.giphy.com/media/3o7WIB0KBZfmGpVV6w/giphy.gif)
+![swiftness](https://media.giphy.com/media/26DN65NTQsapJWWrK/giphy.gif)
 
 
 **Download:** https://github.com/ehrishirajsharma/Swiftness/releases/download/v0.1/Swiftness-v0.1.app.zip
