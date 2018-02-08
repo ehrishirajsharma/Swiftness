@@ -14,6 +14,13 @@ For other operating systems, please follow this poll: https://swiftness-app.type
 (I will start working on other platforms as soon as macOS version gets stable)
 
 
+**Formatting**
+
+Formatting shortcuts are supported, e.g.
+
+- ⌘ + B --> Bold
+- ⌘ + I --> Italic
+
 # **Sharing templates file:**
 
 
