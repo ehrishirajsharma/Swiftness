@@ -49,6 +49,7 @@ A file will be available named reports.xyz - copy and share it to others.
 - [ ] Templates for specific environment profiles (e.g. bug-hunters can maintain multiple versions of vulnerability-template according to the platforms: HackerOne, Bugcrowd, Synack, etc.)
 - [ ] Easiest way to share templates, checklist and notes to other users
 - [ ] Password protection
+- [ ] Lables/tags for templates
 
 
   
