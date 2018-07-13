@@ -5,7 +5,7 @@
 
 **Download App:** https://github.com/ehrishirajsharma/Swiftness/releases/download/V0.2/Swiftness.v0.2.app.zip
 
-**Download Built-in Data (Checklist & Templates):**
+**Download Sample Built-in Data (Checklist & Templates):** https://github.com/ehrishirajsharma/Swiftness/releases/download/V0.2/sample-data-inbuilt.swd
 
 Please file issues on issues section.
 
