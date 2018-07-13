@@ -5,7 +5,14 @@
 
 **Download App:** https://github.com/ehrishirajsharma/Swiftness/releases/download/V0.2/Swiftness.v0.2.app.zip
 
-**Download Sample Built-in Data (Checklist & Templates):** https://github.com/ehrishirajsharma/Swiftness/releases/download/V0.2/sample-data-inbuilt.swd
+Application Crashing or not opening? (Some Affected OS versions)
+
+1. Go to `~/Library/Containers/com.RishirajSharma.Swiftness/` and delete all the files
+2. Open the app, it will close automatically
+3. Reopen, it will work now.
+
+
+Download Sample Built-in Data (Checklist & Templates): https://github.com/ehrishirajsharma/Swiftness/releases/download/V0.2/sample-data-inbuilt.swd
 
 Please file issues on issues section.
 
