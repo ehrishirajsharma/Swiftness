@@ -1,59 +1,68 @@
-# swiftness-private-beta
+# Swiftness v0.2
 
-![Alt Text](https://media.giphy.com/media/3o7WIB0KBZfmGpVV6w/giphy.gif)
+![swiftness](https://image.ibb.co/i6qBcT/mac_os_swiftness.png)
 
 
-**Download:** https://github.com/ehrishirajsharma/Swiftness/releases/download/v0.1/Swiftness-v0.1.app.zip
+**Download App:** https://github.com/ehrishirajsharma/Swiftness/releases/download/V0.2/Swiftness.v0.2.app.zip
+
+**Download Built-in Data (Checklist & Templates):**
 
 Please file issues on issues section.
-
-Share your suggestions/feedback here: https://swiftness-app.typeform.com/to/o5iO6T
-
-For other operating systems, please follow this poll: https://swiftness-app.typeform.com/to/WBeamt
-
-(I will start working on other platforms as soon as macOS version gets stable)
-
-
-# **Sharing templates file:**
-
-
-Go to 
-
-`~/Library/Containers/com.RishirajSharma.Swiftness/Data/Documents/`
-
-A file will be available named reports.xyz - copy and share it to others.
-
-**Note:** Close the app and replace it to the same folder (swiftness-app shall be closed). Existing data will be removed from the app if you directly paste the file (open the file on textEdit and paste the content to keep the previous data)
-
-
-# **Credits:**
-
-- SecurityEscape-team on powering this app.
-- Helped on Swift Programming: Alex Inn
-- Contributed on Checklist data (will be released soon): Sahil Ahamad 
-
-
-# **Upcoming:**
-
-- [ ] Formatting bar for editing templates
-- [ ] Folders/categories for templates
-- [ ] Checklist for different targets
-- [ ] Notes for different targets
-- [ ] Templates for specific environment profiles (e.g. bug-hunters can maintain multiple versions of vulnerability-template according to the platforms: HackerOne, Bugcrowd, Synack, etc.)
-- [ ] Easiest way to share templates, checklist and notes to other users
-
-
   
 
-# Sneak-peek of upcoming version
+# Features
 
 A cleaner and more organised way to track the targets.
 
-![Menu Bar](https://image.ibb.co/mXR4gH/Checklist_min.png)
+![menubar](https://preview.ibb.co/kj7Sj8/Screen_Shot_2018_07_13_at_10_34_02_PM.png)
+
+- Target Specific Checklist
+- Notes
+- Redesigned Menu-bar
+- Export / Import Feature
 
 
-![Editor](https://image.ibb.co/dHzDac/New_Editor_min.png)
+
+### **User Guide for v0.2**
+
+```bash
+https://www.notion.so/User-Guide-4fa07f0f22a0454f9543ffe5330cc8b1
+```
+
+### Default data included
+
+```bash
+1. Web-App Checklist
+
+2. Reporting Templates
+
+3. Payloads
+```
+
+### Updates on the progress
+
+```bash
+https://www.notion.so/Swiftness-a7467154c9794414874b6ad7e68545d3
+```
+
+
+### Contribute to Default checklist-data of Swiftness: (It has errors and need lot of improvements)
+
+```bash
+https://docs.google.com/forms/d/e/1FAIpQLSfO6fFSOoBB7uXLxRbYUHYTt47BVGcn6j8R2NCRJgzq4G85Hw/viewform
+```
+
+
+### Apply for private-beta
+
+https://swiftness-app.typeform.com/to/pdfJbW
 
 
 
-Apply for private-beta: https://swiftness-app.typeform.com/to/pdfJbW
+### Contributors 
+
+Sahil Ahamad https://twitter.com/ehsahil
+
+Mukesh Dhama https://twitter.com/MukeshDhama
+
+Alex Inn
