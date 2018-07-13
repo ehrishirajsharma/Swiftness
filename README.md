@@ -1,4 +1,4 @@
-# Swiftness(v0.2)- A bug bounty data management tool. 
+# Swiftness v0.2 
 
 ![swiftness](https://image.ibb.co/i6qBcT/mac_os_swiftness.png)
 
