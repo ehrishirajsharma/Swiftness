@@ -1,176 +1,115 @@
 import Cocoa
 
-class EditorViewController: NSViewController, Copyable {
+protocol EditorViewControllerDelegate: class {
+    func editableTitleDidUpdate()
+    func editableContentDidUpdate()
+}
 
-    // MARK: - Properties
-    var templateManager: TemplateManager! {
-        didSet {
-            templates = templateManager.templates
-            tableView?.reloadData()
+class EditorViewController: NSViewController, Pasteboardable {
+
+    private var editable: Editable? {
+        willSet {
+            if let editable = editable, editable !== newValue {
+                saveContent()
+            }
         }
     }
 
-    private var templates: Templates!
-    private var editingRow: Int?
+    weak var delegate: EditorViewControllerDelegate!
 
-    // MARK: - IBOutlets
-    @IBOutlet var contentTextView: NSTextView!
-    @IBOutlet weak var titleTextField: NSTextField!
-    @IBOutlet weak var tableView: NSTableView!
-    @IBOutlet weak var box: NSBox!
+    @IBOutlet weak var textField: NSTextField!
+    @IBOutlet var textView: NSTextView!
+    @IBOutlet weak var boldButton: NSButton!
+    @IBOutlet weak var italicButton: NSButton!
+    @IBOutlet weak var fontPopUpButton: NSPopUpButton!
 
-    // MARK: - IBActions
-    @IBAction func createNewTemplate(_ sender: Any) {
-        templateManager.createNewTemplate()
-        templates = templateManager.templates
-        tableView.insertRows(at: [0], withAnimation: .slideLeft)
+    @IBAction func copy(_ sender: Any) {
+        copyToPasteboard(textView.attributedString())
     }
 
-    @IBAction func deleteTemplate(_ sender: NSMenuItem) {
-        let row = tableView.clickedRow
-        guard row != -1 else { return }
-
-        let template = templates[row]
-        templateManager.templates = self.templateManager.templates.filter { $0 !== template }
-        templates.remove(at: row)
-        if tableView.selectedRow == row {
-            clearInputs()
-        }
-        tableView.removeRows(at: [row], withAnimation: NSTableView.AnimationOptions.slideLeft)
+    @IBAction func boldChanged(_ sender: NSButton) {
+        setFont()
     }
 
-    @IBAction func copyTemplate(_ sender: Any) {
-        copyToPasteboard(contentTextView.attributedString())
+    @IBAction func italicChanged(_ sender: NSButton) {
+        setFont()
     }
 
-    // MARK: - Overrides
+    @IBAction func fontChanged(_ sender: NSPopUpButton) {
+        setFont()
+    }
+
     override func viewDidLoad() {
-        templateManager = (NSApp.delegate as? AppDelegate)!.templateManager
+        setFont()
+        textView.textContainerInset = NSSize(width: 8, height: 8)
+    }
 
-        box.superview?.wantsLayer = true
-
-        let shadow = NSShadow()
-        shadow.shadowBlurRadius = 2.0
-        shadow.shadowOffset = CGSize(width: 2.0, height: -2.0)
-        shadow.shadowColor = NSColor.init(white: 0.0, alpha: 0.5)
-
-        box.shadow = shadow
+    override func viewWillAppear() {
+        DispatchQueue.main.async{
+            self.view.window?.makeFirstResponder(nil)
+        }
     }
 
     override func viewWillDisappear() {
-        templateManager.save()
-    }
-}
-
-// MARK: - TableView Data Source
-extension EditorViewController: NSTableViewDataSource {
-    func numberOfRows(in tableView: NSTableView) -> Int {
-        return templates.count
+        saveContent()
     }
 
 }
 
-// MARK: - TableView Delegate
-extension EditorViewController: NSTableViewDelegate {
+extension EditorViewController: NSTextViewDelegate {
 
-    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        guard let cell = tableView.makeView(withIdentifier: EditorTemplateCellView.identifier,
-                                            owner: nil) as? EditorTemplateCellView
-        else { return nil }
-
-        cell.titleTextField.stringValue = templates[row].title
-
-        return cell
-    }
-
-    func tableViewSelectionDidChange(_ notification: Notification) {
-        guard tableView.selectedRow != -1 else {
-            editingRow = nil
-            clearInputs()
-            return
-        }
-        editingRow = tableView.selectedRow
-        let template =  templates[tableView.selectedRow]
-        titleTextField.stringValue = template.title
-        contentTextView.layoutManager?.replaceTextStorage(NSTextStorage(attributedString: template.content))
-    }
-
-    // For white background on selection
-    func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
-        return RowView()
+    func textViewDidChangeTypingAttributes(_ notification: Notification) {
+        let font = textView.typingAttributes[NSAttributedStringKey.font] as! NSFont
+        boldButton.state = font.isBold ? .on : .off
+        italicButton.state = font.isItalic ? .on : .off
     }
 
 }
 
-// MARK: - TextField Delegate
 extension EditorViewController: NSTextFieldDelegate {
 
     override func controlTextDidChange(_ obj: Notification) {
-        guard let textField = obj.object as? NSTextField else { return }
-
-        if textField === titleTextField {
-            update(title: textField.stringValue)
-        } else {
-            filter(string: textField.stringValue)
-        }
-    }
-
-    func update(title: String) {
-        guard let index = editingRow else { return }
-
-        templates[index].title = title
-        tableView.reloadData(forRowIndexes: [index], columnIndexes: [0])
-    }
-
-    func filter(string: String) {
-        templates = templateManager.filteredTemplates(string.lowercased())
-        tableView.reloadData()
+        editable?.title = textField.stringValue
+        delegate.editableTitleDidUpdate()
     }
 
 }
 
-// MARK: - TextView Delegate
-extension EditorViewController: NSTextViewDelegate {
-
-    func textDidChange(_ notification: Notification) {
-        guard
-            let textView = notification.object as? NSTextView,
-            let index = editingRow
-        else { return }
-
-        templates[index].content = textView.attributedString()
-    }
-}
-
-
-// MARK: - Tracking Areas
 extension EditorViewController {
 
-    override func mouseMoved(with event: NSEvent) {
-        let mouseLocation = event.locationInWindow
-
-        let viewLocation = tableView.convert(mouseLocation, from: nil)
-        let row = tableView.row(at: viewLocation)
-        if row != -1 && row != tableView.selectedRow {
-            tableView.deselectAll(nil)
-        }
-        tableView.selectRowIndexes([row], byExtendingSelection: true)
+    func updateView(with editable: Editable) {
+        self.editable = editable
+        view.isHidden = false
+        textField.stringValue = editable.title
+        textView.textStorage?.setAttributedString(editable.content)
     }
 
-    func addTrackingArea() {
-        let trackingOptions: NSTrackingArea.Options = [.mouseMoved, .activeAlways]
-        let trackingArea = NSTrackingArea(rect: view.bounds, options: trackingOptions, owner: self, userInfo: nil)
-        tableView.addTrackingArea(trackingArea)
+    func resetView() {
+        editable = nil
+        view.isHidden = true
+        textField.stringValue = ""
+        textView.string = ""
     }
 
 }
 
-// MARK: - Private methods
 private extension EditorViewController {
 
-    func clearInputs() {
-        titleTextField.stringValue = ""
-        contentTextView.string = ""
+    func setFont() {
+        let fontName = fontPopUpButton.selectedItem!.title
+        let font = NSFont.named(fontName).bold(boldButton.state == .on).italic(italicButton.state == .on)
+        let range = textView.selectedRange
+        if range.length > 0 {
+            textView.textStorage?.addAttribute(NSAttributedStringKey.font, value: font, range: range)
+        } else {
+            textView.typingAttributes = [NSAttributedStringKey.font: font]
+        }
     }
 
+    func saveContent() {
+        guard let editable = editable, editable.content != textView.attributedString() else { return }
+        editable.content = NSAttributedString(attributedString: textView.attributedString())
+        delegate.editableContentDidUpdate()
+    }
+    
 }

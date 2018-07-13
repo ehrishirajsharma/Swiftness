@@ -1,97 +1,150 @@
 import Cocoa
 
-class StatusBarViewController: NSViewController, Copyable {
+class StatusBarViewController: NSViewController, Pasteboardable {
 
     // MARK: - Properties
     weak var delegate: MainWindowDelegate!
-    var templateManager: TemplateManager! {
-        didSet {
-            templates = templateManager.templates
-            tableView?.reloadData()
-        }
-    }
-    
-    private var templates: Templates!
+    var dataManager: DataManager!
+    var folderViewController: FolderViewController!
+    var editorViewController: EditorViewController!
 
     // MARK: - IBOutlets
-    @IBOutlet weak var tableView: NSTableView!
-
+    @IBOutlet weak var targetPopUpButton: NSPopUpButton!
+    @IBOutlet weak var folderPopUpButton: NSPopUpButton!
+    @IBOutlet weak var tabView: NSTabView!
+    @IBOutlet weak var folderNavBar: NSStackView!
+    @IBOutlet weak var editorNavBar: NSStackView!
+    
     // MARK: - IBActions
-    @IBAction func showEditor(_ sender: Any) {
-        delegate.showMainWindow()
+    @IBAction func targetPopUpButtonAction(_ sender: Any) {
+        updateFolderPopUp()
+        updateFolderView()
     }
 
-    @IBAction func copyTemplate(_ sender: NSButton) {
-        let template = templates[sender.tag]
-        copyToPasteboard(template.content)
+    @IBAction func folderPopUpButtonAction(_ sender: Any) {
+        updateFolderView()
+    }
+
+    @IBAction func backButtonAction(_ sender: Any) {
+        showTableView()
+    }
+
+    @IBAction func appButtonAction(_ sender: Any) {
+        delegate.showMainWindow()
     }
 
     // MARK: - Overrides
     override func viewDidLoad() {
-        addTrackingArea()
+        DispatchQueue.main.async{
+            self.view.window?.makeFirstResponder(nil)
+        }
+    }
+    override func viewWillAppear() {
+        showTableView()
+        updateTargetPopUp()
+        updateFolderPopUp()
+        updateFolderView()
+    }
+
+    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
+        switch segue.destinationController {
+        case let viewController as FolderViewController:
+            viewController.delegate = self
+            self.folderViewController = viewController
+        case let viewController as EditorViewController:
+            viewController.delegate = self
+            self.editorViewController = viewController
+        default:
+            break
+        }
     }
 }
 
-// MARK: - TableView Data Source
-extension StatusBarViewController: NSTableViewDataSource {
-    func numberOfRows(in tableView: NSTableView) -> Int {
-        return templates.count
-    }
-}
-
-// MARK: - TableView Delegate
-extension StatusBarViewController: NSTableViewDelegate {
-    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        guard let cell = tableView.makeView(withIdentifier: StatusBarTemplateCellView.identifier,
-                                            owner: nil) as? StatusBarTemplateCellView
-        else { return nil }
-
-        cell.titleTextField.stringValue = templates[row].title
-        cell.copyButton.tag = row
-
-        return cell
-    }
-
-    // For white background on selection
-    func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
-        return RowView()
-    }
-}
-
-// MARK: - TextField Delegate
-extension StatusBarViewController: NSTextFieldDelegate {
-
-    override func controlTextDidChange(_ obj: Notification) {
-        guard let textField = obj.object as? NSTextField else { return }
-
-        templates = templateManager.filteredTemplates(textField.stringValue.lowercased())
-        tableView.reloadData()
-    }
-
-}
-
-// MARK: - Tracking Areas
 extension StatusBarViewController {
 
-    override func mouseMoved(with event: NSEvent) {
-        let mouseLocation = event.locationInWindow
-
-        let viewLocation = tableView.convert(mouseLocation, from: nil)
-        let row = tableView.row(at: viewLocation)
-        if row != tableView.selectedRow {
-            tableView.deselectAll(nil)
+    func updateTargetPopUp() {
+        let previousIndex = targetPopUpButton.indexOfSelectedItem
+        let titles = dataManager.targets.map{ $0.title }.uniques(postfixingWith: " ")
+        targetPopUpButton.removeAllItems()
+        targetPopUpButton.addItems(withTitles: titles)
+        if previousIndex != -1 {
+            targetPopUpButton.selectItem(at: previousIndex)
         }
-        tableView.selectRowIndexes([row], byExtendingSelection: true)
     }
 
-    override func mouseExited(with event: NSEvent) {
-        tableView.deselectAll(nil)
+    func updateFolderPopUp() {
+        let previousIndex = folderPopUpButton.indexOfSelectedItem
+        let target = dataManager.targets[targetPopUpButton.indexOfSelectedItem]
+        let titles = target.folders.map{ $0.title }.uniques(postfixingWith: " ")
+        folderPopUpButton.removeAllItems()
+        folderPopUpButton.addItems(withTitles: titles)
+        if previousIndex != -1 {
+            folderPopUpButton.selectItem(at: previousIndex)
+        }
     }
 
-    func addTrackingArea() {
-        let trackingOptions: NSTrackingArea.Options = [.mouseMoved, .activeAlways, .mouseEnteredAndExited]
-        let trackingArea = NSTrackingArea(rect: tableView.visibleRect, options: trackingOptions, owner: self, userInfo: nil)
-        tableView.addTrackingArea(trackingArea)
+    func updateFolderView() {
+        let target = dataManager.targets[targetPopUpButton.indexOfSelectedItem]
+        let folder = target.folders[folderPopUpButton.indexOfSelectedItem]
+        folderViewController.updateView(with: folder, showAsLibrary: false)
     }
-    
+
+    func showEditorView() {
+        tabView.selectTabViewItem(at: 1)
+        folderNavBar.isHidden = true
+        editorNavBar.isHidden = false
+    }
+
+    func showTableView() {
+        tabView.selectTabViewItem(at: 0)
+        folderNavBar.isHidden = false
+        editorNavBar.isHidden = true
+        folderViewController.tableView.deselectAll(nil)
+    }
+}
+
+extension StatusBarViewController: FolderViewControllerDelegate {
+
+    func editableDidChange(editable: Editable?) {
+        if let editable = editable {
+            editorViewController.updateView(with: editable)
+            showEditorView()
+        } else {
+            editorViewController.resetView()
+        }
+    }
+
+    func wasChanges() {
+        dataManager.save()
+    }
+
+}
+
+extension StatusBarViewController: EditorViewControllerDelegate {
+
+    func editableTitleDidUpdate() {
+        dataManager.save()
+        folderViewController.updateCurrentFolder()
+    }
+
+    func editableContentDidUpdate() {
+        dataManager.save()
+    }
+
+}
+
+private extension Array where Element == String {
+
+    func uniques(postfixingWith char: String) -> [String] {
+        var uniqueValues: [Element] = []
+        forEach { item in
+            var item = item
+            while uniqueValues.contains(item) {
+                item.append(char)
+            }
+            uniqueValues += [item]
+        }
+        return uniqueValues
+    }
+
 }

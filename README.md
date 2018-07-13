@@ -1,6 +1,6 @@
-# Swiftness v0.1
+# swiftness-private-beta
 
-![swiftness](https://media.giphy.com/media/26DN65NTQsapJWWrK/giphy.gif)
+![Alt Text](https://media.giphy.com/media/3o7WIB0KBZfmGpVV6w/giphy.gif)
 
 
 **Download:** https://github.com/ehrishirajsharma/Swiftness/releases/download/v0.1/Swiftness-v0.1.app.zip
@@ -13,13 +13,6 @@ For other operating systems, please follow this poll: https://swiftness-app.type
 
 (I will start working on other platforms as soon as macOS version gets stable)
 
-
-**Formatting**
-
-Formatting shortcuts are supported, e.g.
-
-- ⌘ + B --> Bold
-- ⌘ + I --> Italic
 
 # **Sharing templates file:**
 
@@ -48,8 +41,6 @@ A file will be available named reports.xyz - copy and share it to others.
 - [ ] Notes for different targets
 - [ ] Templates for specific environment profiles (e.g. bug-hunters can maintain multiple versions of vulnerability-template according to the platforms: HackerOne, Bugcrowd, Synack, etc.)
 - [ ] Easiest way to share templates, checklist and notes to other users
-- [ ] Password protection
-- [ ] Lables/tags for templates
 
 
   

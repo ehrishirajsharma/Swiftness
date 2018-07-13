@@ -1,17 +1,21 @@
 import Foundation
 
-class Template: Codable {
-
+class Editable: Codable, Copyable {
     var title: String
     var content: NSAttributedString
 
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case title, content
     }
 
     init() {
-        self.title = ""
+        self.title = String()
         self.content = NSAttributedString()
+    }
+
+    required init(instance: Editable) {
+        self.title = instance.title
+        self.content = NSAttributedString(attributedString: instance.content)
     }
 
     required init(from decoder: Decoder) throws {
@@ -28,5 +32,4 @@ class Template: Codable {
                                documentAttributes: [.documentType: NSAttributedString.DocumentType.rtf])
         try container.encode(data, forKey: CodingKeys.content)
     }
-
 }

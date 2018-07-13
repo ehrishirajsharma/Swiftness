@@ -1,15 +1,21 @@
-import Cocoa
+import Foundation
 
 protocol Copyable {
-    func copyToPasteboard(_ string: NSAttributedString)
+    init(instance: Self)
 }
 
 extension Copyable {
-    func copyToPasteboard(_ string: NSAttributedString) {
-        let pasteboard = NSPasteboard.general
-        let documentAttributes: [NSAttributedString.DocumentAttributeKey: Any] = [.documentType: NSAttributedString.DocumentType.rtf]
-        let data = try! string.data(from: NSRange(location: 0, length: string.length), documentAttributes: documentAttributes)
-        pasteboard.clearContents()
-        pasteboard.setData(data, forType: .rtf)
+
+    func copy() -> Self {
+        return Self.init(instance: self)
     }
+
+}
+
+extension Array where Element : Copyable {
+
+    func copy() -> Array<Element> {
+        return self.map { $0.copy() }
+    }
+    
 }
