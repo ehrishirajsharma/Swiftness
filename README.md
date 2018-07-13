@@ -25,9 +25,8 @@ A cleaner and more organised way to track the targets.
 
 ### **User Guide for v0.2**
 
-```bash
 https://www.notion.so/User-Guide-4fa07f0f22a0454f9543ffe5330cc8b1
-```
+
 
 ### Default data included
 
@@ -41,16 +40,14 @@ https://www.notion.so/User-Guide-4fa07f0f22a0454f9543ffe5330cc8b1
 
 ### Updates on the progress
 
-```bash
 https://www.notion.so/Swiftness-a7467154c9794414874b6ad7e68545d3
-```
+
 
 
 ### Contribute to Default checklist-data of Swiftness: (It has errors and need lot of improvements)
 
-```bash
 https://docs.google.com/forms/d/e/1FAIpQLSfO6fFSOoBB7uXLxRbYUHYTt47BVGcn6j8R2NCRJgzq4G85Hw/viewform
-```
+
 
 
 ### Apply for private-beta
