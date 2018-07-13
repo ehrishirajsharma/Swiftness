@@ -5,7 +5,9 @@
 
 **Download App:** https://github.com/ehrishirajsharma/Swiftness/releases/download/V0.2/Swiftness.v0.2.app.zip
 
-Application Crashing or not opening? (Some Affected OS versions)
+Application Crashing or not opening? (We're still working on few specific affected version, fix should be available within this week)
+
+Temporary fix-around:
 
 1. Go to `~/Library/Containers/com.RishirajSharma.Swiftness/` and delete all the files
 2. Open the app, it will close automatically
