@@ -39,7 +39,7 @@ https://www.notion.so/Swiftness-a7467154c9794414874b6ad7e68545d3
 
 
 
-### Contribute to Default checklist-data of Swiftness: (It has errors and need a lot of improvements)
+### Contribute to Default checklist-data of Swiftness: (It needs a lot of improvements)
 
 https://docs.google.com/forms/d/e/1FAIpQLSfO6fFSOoBB7uXLxRbYUHYTt47BVGcn6j8R2NCRJgzq4G85Hw/viewform
 
