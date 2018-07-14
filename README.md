@@ -5,11 +5,14 @@
 
 **Download App:** https://github.com/ehrishirajsharma/Swiftness/releases/download/V0.2/Swiftness.v0.2.app.zip
 
-Application Crashing or not opening? (It may be happening because of empty data)
+Application Crashing or not opening? (We're still working on few specific affected OS versions, fix should be available within this week)
+
+Temporary Fix:
 
 1. Download [Sample Built-in Data](https://github.com/ehrishirajsharma/Swiftness/releases/download/V0.2/sample-data-inbuilt.swd), Copy it
 2. Go to `~/Library/Containers/com.RishirajSharma.Swiftness/Data/Documents/`
 3. Paste the file and now open it.
+
 
 
 Download Sample Built-in Data (Checklist & Templates): https://github.com/ehrishirajsharma/Swiftness/releases/download/V0.2/sample-data-inbuilt.swd
