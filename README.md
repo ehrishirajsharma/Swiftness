@@ -10,7 +10,7 @@
 
 Application Crashing or not opening? (That's because it doesn't have the data, follow the below steps)
 
-1. Download [Sample Built-in Data](https://github.com/ehrishirajsharma/Swiftness/releases/download/V0.2/sample-built-in-data.zip), Unzip and Copy Files
+1. Download [Sample Built-in Data](https://github.com/ehrishirajsharma/Swiftness/releases/download/V0.2/sample-built-in-data.zip), Unzip and Copy Files (from unzipped folder)
 2. Go to `~/Library/Containers/com.RishirajSharma.Swiftness/Data/Documents/` Remove All the files in it
 3. Paste the copied files and now open Swiftness App.
 
