@@ -3,17 +3,44 @@ import Cocoa
 class StatusBarViewController: NSViewController, Pasteboardable {
 
     // MARK: - Properties
-    weak var delegate: MainWindowDelegate!
+    weak var mainWindowDelegate: MainWindowDelegate!
     var dataManager: DataManager!
     var folderViewController: FolderViewController!
-    var editorViewController: EditorViewController!
+    private var editable: Editable? {
+        willSet {
+            if let editable = editable, editable !== newValue {
+                saveContent()
+            }
+        }
+    }
 
     // MARK: - IBOutlets
     @IBOutlet weak var targetPopUpButton: NSPopUpButton!
     @IBOutlet weak var folderPopUpButton: NSPopUpButton!
     @IBOutlet weak var tabView: NSTabView!
-    @IBOutlet weak var folderNavBar: NSStackView!
-    @IBOutlet weak var editorNavBar: NSStackView!
+
+    @IBOutlet weak var textField: NSTextField!
+    @IBOutlet weak var textView: NSTextView!
+    @IBOutlet weak var boldButton: NSButton!
+    @IBOutlet weak var italicButton: NSButton!
+    @IBOutlet weak var fontPopUpButton: NSPopUpButton!
+
+    @IBAction func copy(_ sender: Any) {
+        copyToPasteboard(textView.attributedString())
+    }
+
+    @IBAction func boldChanged(_ sender: NSButton) {
+        setFont()
+    }
+
+    @IBAction func italicChanged(_ sender: NSButton) {
+        setFont()
+    }
+
+    @IBAction func fontChanged(_ sender: NSPopUpButton) {
+        setFont()
+    }
+
     
     // MARK: - IBActions
     @IBAction func targetPopUpButtonAction(_ sender: Any) {
@@ -30,7 +57,7 @@ class StatusBarViewController: NSViewController, Pasteboardable {
     }
 
     @IBAction func appButtonAction(_ sender: Any) {
-        delegate.showMainWindow()
+        mainWindowDelegate.showMainWindow()
     }
 
     // MARK: - Overrides
@@ -38,6 +65,8 @@ class StatusBarViewController: NSViewController, Pasteboardable {
         DispatchQueue.main.async{
             self.view.window?.makeFirstResponder(nil)
         }
+        setFont()
+        textView.textContainerInset = NSSize(width: 8, height: 8)
     }
     override func viewWillAppear() {
         showTableView()
@@ -46,14 +75,15 @@ class StatusBarViewController: NSViewController, Pasteboardable {
         updateFolderView()
     }
 
+    override func viewWillDisappear() {
+        saveContent()
+    }
+
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         switch segue.destinationController {
         case let viewController as FolderViewController:
             viewController.delegate = self
             self.folderViewController = viewController
-        case let viewController as EditorViewController:
-            viewController.delegate = self
-            self.editorViewController = viewController
         default:
             break
         }
@@ -90,27 +120,29 @@ extension StatusBarViewController {
     }
 
     func showEditorView() {
-        tabView.selectTabViewItem(at: 1)
-        folderNavBar.isHidden = true
-        editorNavBar.isHidden = false
+        self.tabView.selectTabViewItem(at: 1)
+        self.view.window?.makeFirstResponder(nil)
     }
 
     func showTableView() {
-        tabView.selectTabViewItem(at: 0)
-        folderNavBar.isHidden = false
-        editorNavBar.isHidden = true
         folderViewController.tableView.deselectAll(nil)
+        tabView.selectTabViewItem(at: 0)
     }
 }
 
 extension StatusBarViewController: FolderViewControllerDelegate {
 
     func editableDidChange(editable: Editable?) {
+        guard
+            let selectedItem = tabView.selectedTabViewItem,
+            tabView.indexOfTabViewItem(selectedItem) == 0
+        else { return }
+
         if let editable = editable {
-            editorViewController.updateView(with: editable)
+            updateView(with: editable)
             showEditorView()
         } else {
-            editorViewController.resetView()
+            resetView()
         }
     }
 
@@ -145,6 +177,60 @@ private extension Array where Element == String {
             uniqueValues += [item]
         }
         return uniqueValues
+    }
+
+}
+
+extension StatusBarViewController: NSTextViewDelegate {
+
+    func textViewDidChangeTypingAttributes(_ notification: Notification) {
+        let font = textView.typingAttributes[NSAttributedStringKey.font] as! NSFont
+        boldButton.state = font.isBold ? .on : .off
+        italicButton.state = font.isItalic ? .on : .off
+    }
+
+}
+
+extension StatusBarViewController: NSTextFieldDelegate {
+
+    override func controlTextDidChange(_ obj: Notification) {
+        editable?.title = textField.stringValue
+        editableTitleDidUpdate()
+    }
+
+}
+
+private extension StatusBarViewController {
+
+    func updateView(with editable: Editable) {
+        self.editable = editable
+        view.isHidden = false
+        textField.stringValue = editable.title
+        textView.textStorage?.setAttributedString(editable.content)
+    }
+
+    func resetView() {
+        editable = nil
+        view.isHidden = true
+        textField.stringValue = ""
+        textView.string = ""
+    }
+
+    func setFont() {
+        let fontName = fontPopUpButton.selectedItem!.title
+        let font = NSFont.named(fontName).bold(boldButton.state == .on).italic(italicButton.state == .on)
+        let range = textView.selectedRange
+        if range.length > 0 {
+            textView.textStorage?.addAttribute(NSAttributedStringKey.font, value: font, range: range)
+        } else {
+            textView.typingAttributes = [NSAttributedStringKey.font: font]
+        }
+    }
+
+    func saveContent() {
+        guard let editable = editable, editable.content != textView.attributedString() else { return }
+        editable.content = NSAttributedString(attributedString: textView.attributedString())
+        editableContentDidUpdate()
     }
 
 }

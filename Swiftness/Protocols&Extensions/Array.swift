@@ -1,14 +1,31 @@
 import Foundation
 
+enum ArrayError: LocalizedError {
+    case elementNotFound
+
+    var localizedDescription: String {
+        switch self {
+        case .elementNotFound: return "Array element not found"
+        }
+    }
+
+}
+
 extension Array where Element: AnyObject {
 
-    mutating func remove(_ element: Element) -> Int? {
-        if let i = index(where: { $0 === element }) {
-            remove(at: i)
-            return i
-        } else {
-            return nil
+    mutating func remove(_ element: Element) throws -> Int {
+        guard let i = index(where: { $0 === element }) else {
+            throw ArrayError.elementNotFound
         }
+        
+        remove(at: i)
+        return i
+    }
+
+    mutating func move(at source: Int, to destination: Int) {
+        let offset = source > destination ? 1 : 0
+        insert(self[source], at: destination)
+        remove(at: source + offset)
     }
 
 }

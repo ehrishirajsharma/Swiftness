@@ -2,7 +2,7 @@ import AppKit
 
 protocol Removable {
     func showRemoveDialog()
-    func removeCurrentItem()
+    func removeSelectedRow()
 }
 
 extension Removable where Self: NSViewController {
@@ -17,7 +17,7 @@ extension Removable where Self: NSViewController {
 
         alert.beginSheetModal(for: view.window!) { modalResponse in
             if modalResponse == .alertFirstButtonReturn {
-                self.removeCurrentItem()
+                self.removeSelectedRow()
             }
         }
     }

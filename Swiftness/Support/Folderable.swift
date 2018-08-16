@@ -16,10 +16,6 @@ class Folderable: Codable, Equatable  {
         folders.append(Folder())
     }
 
-    func remove(_ folder: Folder) -> Int? {
-        return folders.remove(folder)
-    }
-
     static func == (lhs: Folderable, rhs: Folderable) -> Bool {
         return lhs.uuid == rhs.uuid
     }

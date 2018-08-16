@@ -2,9 +2,9 @@ import Foundation
 
 class Folder: Codable, Copyable {
     var title: String
-    private(set) var templates: [Template] = []
-    private(set) var checklist: [CheckListItem] = []
-    private(set) var notes: [Note] = []
+    var templates: [Template] = []
+    var checklist: [CheckListItem] = []
+    var notes: [Note] = []
 
     init() {
         self.title = "New Folder"
@@ -17,27 +17,4 @@ class Folder: Codable, Copyable {
         self.notes = instance.notes.copy()
     }
 
-    func addNewTemplate() {
-        templates.append(Template())
-    }
-
-    func addNewCheckListItem() {
-        checklist.append(CheckListItem())
-    }
-
-    func addNewNote() {
-        notes.append(Note())
-    }
-
-    func remove(_ editable: Editable) -> Int? {
-        if let template = editable as? Template {
-            return templates.remove(template)
-        } else if let checkListItem = editable as? CheckListItem {
-            return checklist.remove(checkListItem)
-        } else if let note = editable as? Note {
-            return notes.remove(note)
-        }
-
-        return nil
-    }
 }

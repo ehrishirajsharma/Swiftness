@@ -15,7 +15,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private lazy var popover: NSPopover = {
         let popover = NSPopover()
         let statusBarViewController = NSStoryboard.statusBarViewController
-        statusBarViewController.delegate = self
+        statusBarViewController.mainWindowDelegate = self
         statusBarViewController.dataManager = dataManager
         popover.contentViewController = statusBarViewController
         popover.behavior = .transient

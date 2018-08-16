@@ -21,6 +21,8 @@
 		FA40117D2024824B008E08F2 /* EditorTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA40117C2024824B008E08F2 /* EditorTableView.swift */; };
 		FA40117F2027751E008E08F2 /* MainWindowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA40117E2027751E008E08F2 /* MainWindowDelegate.swift */; };
 		FA53D95A2054DD6C001CD7AC /* SourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA53D9592054DD6C001CD7AC /* SourceViewController.swift */; };
+		FA617BCC211C3F2F001819CF /* NSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA617BCB211C3F2F001819CF /* NSViewController.swift */; };
+		FA617BCE211D93AE001819CF /* NSPasteboardItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA617BCD211D93AE001819CF /* NSPasteboardItem.swift */; };
 		FA637AAE201CA7D000B1EF9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA637AAD201CA7D000B1EF9F /* AppDelegate.swift */; };
 		FA637AB0201CA7D000B1EF9F /* StatusBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA637AAF201CA7D000B1EF9F /* StatusBarViewController.swift */; };
 		FA637AB2201CA7D000B1EF9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA637AB1201CA7D000B1EF9F /* Assets.xcassets */; };
@@ -36,7 +38,6 @@
 		FAB75B86206A8E8C0078D96F /* Copyable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB75B85206A8E8C0078D96F /* Copyable.swift */; };
 		FAB75B88206A9C6B0078D96F /* CheckBoxCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB75B87206A9C6B0078D96F /* CheckBoxCellView.swift */; };
 		FAB75B8A206AB3E80078D96F /* ExportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB75B89206AB3E80078D96F /* ExportViewController.swift */; };
-		FABCD69C20564906008A1A95 /* NSOutlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABCD69B20564906008A1A95 /* NSOutlineView.swift */; };
 		FAC27B2D2067C14400F2D4DA /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC27B2C2067C14400F2D4DA /* Array.swift */; };
 		FAC27B2F2067D67100F2D4DA /* NSFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC27B2E2067D67100F2D4DA /* NSFont.swift */; };
 		FAC746382055289F00857B71 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC746372055289F00857B71 /* SplitViewController.swift */; };
@@ -62,6 +63,8 @@
 		FA40117C2024824B008E08F2 /* EditorTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorTableView.swift; sourceTree = "<group>"; };
 		FA40117E2027751E008E08F2 /* MainWindowDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowDelegate.swift; sourceTree = "<group>"; };
 		FA53D9592054DD6C001CD7AC /* SourceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceViewController.swift; sourceTree = "<group>"; };
+		FA617BCB211C3F2F001819CF /* NSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSViewController.swift; sourceTree = "<group>"; };
+		FA617BCD211D93AE001819CF /* NSPasteboardItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPasteboardItem.swift; sourceTree = "<group>"; };
 		FA637AAA201CA7D000B1EF9F /* Swiftness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swiftness.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA637AAD201CA7D000B1EF9F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA637AAF201CA7D000B1EF9F /* StatusBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarViewController.swift; sourceTree = "<group>"; };
@@ -80,7 +83,6 @@
 		FAB75B85206A8E8C0078D96F /* Copyable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Copyable.swift; sourceTree = "<group>"; };
 		FAB75B87206A9C6B0078D96F /* CheckBoxCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxCellView.swift; sourceTree = "<group>"; };
 		FAB75B89206AB3E80078D96F /* ExportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportViewController.swift; sourceTree = "<group>"; };
-		FABCD69B20564906008A1A95 /* NSOutlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSOutlineView.swift; sourceTree = "<group>"; };
 		FAC27B2C2067C14400F2D4DA /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		FAC27B2E2067D67100F2D4DA /* NSFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFont.swift; sourceTree = "<group>"; };
 		FAC746372055289F00857B71 /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
@@ -134,11 +136,12 @@
 				FA1F0055201FB00500640EC8 /* NSButton.swift */,
 				FA40117E2027751E008E08F2 /* MainWindowDelegate.swift */,
 				FA0747DB2055182000CAA183 /* NSImage.swift */,
-				FABCD69B20564906008A1A95 /* NSOutlineView.swift */,
 				FAC27B2C2067C14400F2D4DA /* Array.swift */,
 				FAC27B2E2067D67100F2D4DA /* NSFont.swift */,
 				FAB75B85206A8E8C0078D96F /* Copyable.swift */,
 				FA2DDF7F20EC849700555114 /* Removable.swift */,
+				FA617BCB211C3F2F001819CF /* NSViewController.swift */,
+				FA617BCD211D93AE001819CF /* NSPasteboardItem.swift */,
 			);
 			path = "Protocols&Extensions";
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 				FAC746402055449C00857B71 /* CheckListItem.swift in Sources */,
 				FA40117D2024824B008E08F2 /* EditorTableView.swift in Sources */,
 				FA0747DC2055182000CAA183 /* NSImage.swift in Sources */,
+				FA617BCE211D93AE001819CF /* NSPasteboardItem.swift in Sources */,
 				FA637ACC201DBDC500B1EF9F /* EditorTemplateCellView.swift in Sources */,
 				FA0747DE20551A5200CAA183 /* Folder.swift in Sources */,
 				FAC27B2D2067C14400F2D4DA /* Array.swift in Sources */,
@@ -311,7 +315,7 @@
 				FA0747D42054DFD700CAA183 /* Library.swift in Sources */,
 				FA637ABE201CAA1800B1EF9F /* WindowController.swift in Sources */,
 				FA0747DA20550F6F00CAA183 /* TransparentTableRowView.swift in Sources */,
-				FABCD69C20564906008A1A95 /* NSOutlineView.swift in Sources */,
+				FA617BCC211C3F2F001819CF /* NSViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,7 +446,7 @@
 				CODE_SIGN_ENTITLEMENTS = Swiftness/Resources/Swiftness.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = DR3DF4J982;
+				DEVELOPMENT_TEAM = QGR9S6JP32;
 				INFOPLIST_FILE = "$(SRCROOT)/Swiftness/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.RishirajSharma.Swiftness;
@@ -458,7 +462,7 @@
 				CODE_SIGN_ENTITLEMENTS = Swiftness/Resources/Swiftness.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = DR3DF4J982;
+				DEVELOPMENT_TEAM = QGR9S6JP32;
 				INFOPLIST_FILE = "$(SRCROOT)/Swiftness/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.RishirajSharma.Swiftness;

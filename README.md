@@ -1,10 +1,29 @@
-# Swiftness v0.2 
+<h1 align="center">
+  <br>
+  <img src="https://s15.postimg.cc/omhc6tcrv/256px_2x.png" alt="Swiftness" width="100"></a>
+  <br>
+  Swiftness v0.3
+  <br>
+</h1>
 
-![swiftness](https://image.ibb.co/i6qBcT/mac_os_swiftness.png)
+<div align="center">
+
+[![forthebadge](https://forthebadge.com/images/badges/made-with-swift.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/gluten-free.svg)](https://forthebadge.com)
+
+</div>
+
+<p align="center"> Swiftness is a macOS note-taking and target tracking app, especially designed for penetration testers and bug bounty hunters to intensify their process. This project is under an active development, keep looking to see updates or apply to private-beta to test upcoming builds. </p>
+
+<p align="center">
+  <a href="#download">Download</a> •
+<a href="https://www.notion.so/User-Guide-4fa07f0f22a0454f9543ffe5330cc8b1">How To Use</a> •
+  <a href="https://goo.gl/forms/ia5pXgdKEzBViDK52">Apply for Private Beta</a> 
+</p>
+
+![swiftness](https://image.ibb.co/nzjtbU/swiftnessv0_3.png)
 
 
-**Download App:** https://github.com/ehrishirajsharma/Swiftness/releases/download/V0.2/Swiftness.v0.2.app.zip
-
+<p align="center"> <a href="https://google.com"> Download Latest version </a> <p align="center">
 
 ---
 
@@ -15,54 +34,52 @@ Application Crashing or not opening? (That's because it doesn't have the data, f
 3. Paste the copied files and now open Swiftness App.
 
 ---
+### Features
 
-Download Sample Built-in Data (Checklist & Templates): https://github.com/ehrishirajsharma/Swiftness/releases/download/V0.2/sample-data-inbuilt.swd
+- Manage your targets
+- Checklist system
+- Menu-Bar App
+- Lets you store your notes (e.g. assets information, suspectible vulnerabilities, etc)
+- Report templates
 
-Please file issues under issues section.
-
----
-
-### **User Guide for v0.2**
-
-https://www.notion.so/User-Guide-4fa07f0f22a0454f9543ffe5330cc8b1
-
----
-  
-# Features
-
-A cleaner and a more organised way to track the targets.
-
-![menubar](https://preview.ibb.co/kj7Sj8/Screen_Shot_2018_07_13_at_10_34_02_PM.png)
-
-- Target Specific Checklist
-- Notes
-- Redesigned Menu-bar
-- Export / Import Feature
+Basically, it helps you in mapping your target and track the attack vectors for long-term purpose.
 
 ---
 
-### Updates on the progress
+### User Guide
 
-https://www.notion.so/Swiftness-a7467154c9794414874b6ad7e68545d3
-
----
-
-### Contribute to Default checklist-data of Swiftness: (It needs a lot of improvements)
-
-https://docs.google.com/forms/d/e/1FAIpQLSfO6fFSOoBB7uXLxRbYUHYTt47BVGcn6j8R2NCRJgzq4G85Hw/viewform
+Check how to get started with Swiftness macOS. <a href="https://www.notion.so/User-Guide-4fa07f0f22a0454f9543ffe5330cc8b1"> Read Here </a>
 
 ---
 
-### Apply for private-beta
+### Apply for Private Beta
 
-https://swiftness-app.typeform.com/to/pdfJbW
+https://goo.gl/forms/ia5pXgdKEzBViDK52
+
+Private beta also includes upcoming Windows and Ubuntu builds. Private beta is meant to help in finding bugs and fix UX issues. Please apply only if you have experience in Swift, ElectronJS and fundamentals of UI/UX.
 
 ---
 
-### Contributors 
+### Upcomings
 
-Sahil Ahamad - https://twitter.com/ehsahil
 
-Mukesh Dhama - https://twitter.com/MukeshDhama
+- ElectronJS based Windows and Ubuntu builds
+- Separate Template Section
+- Shareware System
+- Dark Mode / Menu Support
+- Keyboard Shortcuts
+- Touchbar Support
+- Image Support in Content Area
+- Checks Refresher
 
-Alex Inn
+---
+
+### Contribute
+
+For bugs, UX/UI suggestion or to request a feature, please file it under Issues section. You can also submit privately using this form: https://goo.gl/forms/wrMixDxNs4mAmUvi1
+
+Thanks to the following people on contributing to this project: 
+
+- Alex Inn
+- Sahil Ahamad
+- Mukesh Dhama

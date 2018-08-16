@@ -13,8 +13,8 @@ class DataManager {
     static let fileExtension = "swd"
     static let defaultFileName = "data"
 
-    private(set) var targets: [Target]
-    private(set) var libraries: [Library]
+    var targets: [Target]
+    var libraries: [Library]
 
     init() {
         libraries = []
@@ -54,32 +54,6 @@ class DataManager {
 
     }
 
-    func addNewTarget() {
-        targets.append(Target())
-        save()
-    }
-
-    func addNewTarget(with library: Library) {
-        targets.append(Target(library: library))
-        save()
-    }
-
-    func addNewLibrary() {
-        libraries.append(Library())
-        save()
-    }
-
-    func remove(_ target: Target) -> Int? {
-        let index = targets.remove(target)
-        save()
-        return index
-    }
-
-    func remove(_ library: Library) -> Int? {
-        let index = libraries.remove(library)
-        save()
-        return index
-    }
 }
 
 private struct FileData: Codable {
