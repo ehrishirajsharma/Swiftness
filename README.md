@@ -15,7 +15,7 @@
 <p align="center"> Swiftness is a macOS note-taking and target tracking app, especially designed for penetration testers and bug bounty hunters to intensify their process. This project is under an active development, keep looking to see updates or apply to private-beta to test upcoming builds. </p>
 
 <p align="center">
-  <a href="#download">Download</a> •
+  <a href="https://github.com/ehrishirajsharma/Swiftness/releases/download/v0.3/Swiftness.v0.3.zip">Download</a> •
 <a href="https://www.notion.so/User-Guide-4fa07f0f22a0454f9543ffe5330cc8b1">How To Use</a> •
   <a href="https://goo.gl/forms/ia5pXgdKEzBViDK52">Apply for Private Beta</a> 
 </p>
@@ -23,7 +23,7 @@
 ![swiftness](https://image.ibb.co/nzjtbU/swiftnessv0_3.png)
 
 
-<p align="center"> <a href="https://google.com"> Download Latest version </a> <p align="center">
+<p align="center"> <a href="https://github.com/ehrishirajsharma/Swiftness/releases/download/v0.3/Swiftness.v0.3.zip"> Download Latest version </a> <p align="center">
 
 ---
 
