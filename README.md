@@ -1,59 +1,85 @@
-# swiftness-private-beta
+<h1 align="center">
+  <br>
+  <img src="https://s15.postimg.cc/omhc6tcrv/256px_2x.png" alt="Swiftness" width="100"></a>
+  <br>
+  Swiftness v0.3
+  <br>
+</h1>
 
-![Alt Text](https://media.giphy.com/media/3o7WIB0KBZfmGpVV6w/giphy.gif)
+<div align="center">
 
+[![forthebadge](https://forthebadge.com/images/badges/made-with-swift.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/gluten-free.svg)](https://forthebadge.com)
 
-**Download:** https://github.com/ehrishirajsharma/Swiftness/releases/download/v0.1/Swiftness-v0.1.app.zip
+</div>
 
-Please file issues on issues section.
+<p align="center"> Swiftness is a macOS note-taking and target tracking app, especially designed for penetration testers and bug bounty hunters to intensify their process. This project is under an active development, keep looking to see updates or apply to private-beta to test upcoming builds. </p>
 
-Share your suggestions/feedback here: https://swiftness-app.typeform.com/to/o5iO6T
+<p align="center">
+  <a href="https://github.com/ehrishirajsharma/Swiftness/releases/download/v0.3/Swiftness.v0.3.zip">Download</a> •
+<a href="https://www.notion.so/User-Guide-4fa07f0f22a0454f9543ffe5330cc8b1">How To Use</a> •
+  <a href="https://goo.gl/forms/ia5pXgdKEzBViDK52">Apply for Private Beta</a> 
+</p>
 
-For other operating systems, please follow this poll: https://swiftness-app.typeform.com/to/WBeamt
-
-(I will start working on other platforms as soon as macOS version gets stable)
-
-
-# **Sharing templates file:**
-
-
-Go to 
-
-`~/Library/Containers/com.RishirajSharma.Swiftness/Data/Documents/`
-
-A file will be available named reports.xyz - copy and share it to others.
-
-**Note:** Close the app and replace it to the same folder (swiftness-app shall be closed). Existing data will be removed from the app if you directly paste the file (open the file on textEdit and paste the content to keep the previous data)
+![swiftness](https://image.ibb.co/nzjtbU/swiftnessv0_3.png)
 
 
-# **Credits:**
+<p align="center"> <a href="https://github.com/ehrishirajsharma/Swiftness/releases/download/v0.3/Swiftness.v0.3.zip"> Download Latest version </a> <p align="center">
 
-- SecurityEscape-team on powering this app.
-- Helped on Swift Programming: Alex Inn
-- Contributed on Checklist data (will be released soon): Sahil Ahamad 
+---
+
+Application Crashing or not opening? (That's because it doesn't have the data, follow the below steps)
+
+1. Download [Sample Built-in Data](https://github.com/ehrishirajsharma/Swiftness/releases/download/V0.2/sample-built-in-data.zip), Unzip and Copy Files (from unzipped folder)
+2. Go to `~/Library/Containers/com.RishirajSharma.Swiftness/Data/Documents/` Remove All the files in it
+3. Paste the copied files and now open Swiftness App.
+
+---
+### Features
+
+- Manage your targets
+- Checklist system
+- Menu-Bar App
+- Lets you store your notes (e.g. assets information, suspectible vulnerabilities, etc)
+- Report templates
+
+Basically, it helps you in mapping your target and track the attack vectors for long-term purpose.
+
+---
+
+### User Guide
+
+Check how to get started with Swiftness macOS. <a href="https://www.notion.so/User-Guide-4fa07f0f22a0454f9543ffe5330cc8b1"> Read Here </a>
+
+---
+
+### Apply for Private Beta
+
+https://goo.gl/forms/ia5pXgdKEzBViDK52
+
+Private beta also includes upcoming Windows and Ubuntu builds. Private beta is meant to help in finding bugs and fix UX issues. Please apply only if you have experience in Swift, ElectronJS and fundamentals of UI/UX.
+
+---
+
+### Upcomings
 
 
-# **Upcoming:**
+- ElectronJS based Windows and Ubuntu builds
+- Separate Template Section
+- Shareware System
+- Dark Mode / Menu Support
+- Keyboard Shortcuts
+- Touchbar Support
+- Image Support in Content Area
+- Checks Refresher
 
-- [ ] Formatting bar for editing templates
-- [ ] Folders/categories for templates
-- [ ] Checklist for different targets
-- [ ] Notes for different targets
-- [ ] Templates for specific environment profiles (e.g. bug-hunters can maintain multiple versions of vulnerability-template according to the platforms: HackerOne, Bugcrowd, Synack, etc.)
-- [ ] Easiest way to share templates, checklist and notes to other users
+---
 
+### Contribute
 
-  
+For bugs, UX/UI suggestion or to request a feature, please file it under Issues section. You can also submit privately using this form: https://goo.gl/forms/wrMixDxNs4mAmUvi1
 
-# Sneak-peek of upcoming version
+Thanks to the following people on contributing to this project: 
 
-A cleaner and more organised way to track the targets.
-
-![Menu Bar](https://image.ibb.co/mXR4gH/Checklist_min.png)
-
-
-![Editor](https://image.ibb.co/dHzDac/New_Editor_min.png)
-
-
-
-Apply for private-beta: https://swiftness-app.typeform.com/to/pdfJbW
+- Alex Inn
+- Sahil Ahamad
+- Mukesh Dhama
