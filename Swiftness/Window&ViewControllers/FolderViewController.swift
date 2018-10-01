@@ -33,11 +33,6 @@ class FolderViewController: NSViewController {
     @IBOutlet weak var segmentedControl: NSSegmentedControl!
     @IBOutlet weak var tableView: NSTableView!
     @IBOutlet weak var searchField: NSSearchField!
-    
-    @IBAction func sourceDidChange(_ sender: NSSegmentedControl) {
-        updateTableView()
-        delegate.editableDidChange(editable: nil)
-    }
 
     @IBAction func addNewItem(_ sender: Any) {
         guard let folder = folder else { return }
@@ -62,7 +57,11 @@ class FolderViewController: NSViewController {
         checkListItem.done = sender.state == .on
         delegate.wasChanges()
     }
-    
+
+    @IBAction func itemTypeDidChange(_ sender: Any) {
+        updateTableView()
+    }
+
     // MARK: - Overrides
     override func viewDidLoad() {
         tableView.registerForDraggedTypes([dataType])

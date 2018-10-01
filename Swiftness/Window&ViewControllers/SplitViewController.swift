@@ -69,7 +69,6 @@ extension SplitViewController: FolderViewControllerDelegate {
 extension SplitViewController: EditorViewControllerDelegate {
 
     func editableTitleDidUpdate() {
-        dataManager.save()
         folderViewController.updateCurrentFolder()
     }
 

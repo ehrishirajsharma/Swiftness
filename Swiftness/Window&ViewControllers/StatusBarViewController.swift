@@ -155,7 +155,6 @@ extension StatusBarViewController: FolderViewControllerDelegate {
 extension StatusBarViewController: EditorViewControllerDelegate {
 
     func editableTitleDidUpdate() {
-        dataManager.save()
         folderViewController.updateCurrentFolder()
     }
 
